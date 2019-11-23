@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    {% if error is defined and error is not empty %}
+        <br>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Klaida!</strong> {{ error }}
+    </div>
+{% endif %}
+    {% if summ is defined and summ is not empty %}
+        <br>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Klaida!</strong> {{ summ }}
+        </div>
+    {% endif %}
+    <br>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+        <h1 class="h2">Pridėti išlaidą/pirkinį</h1>
+        <br>
+    </div>
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+    Pirkinys/išlaida {{ form_widget(form.pavadinimas) }}
+    Suma {{ form_widget(form.suma) }}
+    Tipas {{ form_widget(form.tipas) }}
+    <br>
+    {% if app.user.dabartinisLimitas > 0 %}
+
+    <button type="submit" class="btn btn-primary btn-raised"> Pridėti išlaidą/pirkinį </button>
+    {% else %}
+    <p><a style="color: red;">Išnaudotas limitas.</p>
+    {% endif %}
+    {{ form_end(form) }}
+
+{% endblock %}

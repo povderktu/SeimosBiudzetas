@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        {% if error is defined and error is not empty %}
+            <div class="alert alert-danger">Neteisingi prisijungimo duomenys.</div>
+        {% endif %}
+
+            <div class="login">
+                <h1>Prisijungimas</h1>
+                <br>
+                <br>
+                <form action="{{ path('login') }}" method="post">
+                    <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+                    <input type="password" id="password" name="_password" />
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Prisijungti</button>
+                </form>
+            </div>
+
+
+    </div>
+{% endblock %}

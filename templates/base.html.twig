@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Šeimos biudžetas Sistemą sukūrė Povilas Derbutis IFF-6/13</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/heroic-features.css') }}" rel="stylesheet">
+    </head>
+    <body>
+
+        {% block headas %}
+            {% if app.user %}
+                {% if app.user.role == 3 %}
+                <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ path('main') }}">Šeimos biudžetas | Sukūrė Povilas Derbutis IFF-6/13</a>
+                    <br>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ path('main') }}">Pagrindinis
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ 'members' }}">Vartotojai</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ 'expanseTypes' }}">Išlaidų tipai</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Prisijungęs kaip : {{ app.user.username }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('logout') }}">Atsijungti</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+                    {% endif %}
+                    {% if app.user.role == 2 %}
+                        <!-- Navigation -->
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                            <div class="container">
+                                <a class="navbar-brand" href="{{ path('main') }}">Šeimos biudžetas | Sukūrė Povilas Derbutis IFF-6/13</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{{ path('main') }}">Pagrindinis
+                                                <span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('changelimstate') }}">Limitai</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Prisijungęs kaip : {{ app.user.username }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('logout') }}">Atsijungti</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        {% endif %}
+                     {% if app.user.role == 1 %}
+                        <!-- Navigation -->
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                            <div class="container">
+                                <a class="navbar-brand" href="{{ path('main') }}">Šeimos biudžetas | Sukūrė Povilas Derbutis IFF-6/13</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="{{ path('main') }}">Pagrindinis
+                                                <span class="sr-only">(current)</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('showmyexpanses') }}">Išlaidos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link">Prisijungęs kaip : {{ app.user.username }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link">Likęs limitas : {{ app.user.dabartinisLimitas }} Eur iš {{ app.user.limitas }} Eur </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"> </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('logout') }}">Atsijungti</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+        {% endif %}
+                {% else %}
+                    <!-- Navigation -->
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                        <div class="container">
+                            <a class="navbar-brand" href="{{ path('main') }}">Šeimos biudžetas | Sukūrė Povilas Derbutis IFF-6/13</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarResponsive">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{{ path('main') }}">Pagrindinis
+                                            <span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('login') }}">Prisijungti</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+        {% endif %}
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

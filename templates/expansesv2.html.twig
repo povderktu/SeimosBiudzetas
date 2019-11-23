@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <br>
+    <br>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Išlaidos</h1>
+        </div>
+        {% if app.user.dabartinisLimitas > 0 and app.user.busena == 'Patvirtintas'%}
+            <br>
+         <button onclick="location.href='{{ path('addexpanse') }}'" type="button" class="btn btn-primary">Pridėti pirkinį/išlaidą</button>
+            <br>
+        {% elseif app.user.busena == 'Nepatvirtintas' %}
+            <br>
+            <button onclick="location.href='{{ path('addexpanse') }}'" type="button" class="btn btn-primary" disabled>Pridėti pirkinį/išlaidą</button>
+            <p><a style="color: red;">Jūsų limitas dar nėra patvirtintas kontrolieriaus.</a></p>
+            <br>
+        {% elseif app.user.dabartinisLimitas == 0 and app.user.busena == 'Užblokuotas' %}
+            <br>
+            <button onclick="location.href='{{ path('addexpanse') }}'" type="button" class="btn btn-primary" disabled>Pridėti pirkinį/išlaidą</button>
+            <p><a style="color: red;">Išnaudotas limitas bei esate užblokuotas, priežastis : {{ app.user.reason }}.</a></p>
+            <br>
+        {% elseif app.user.dabartinisLimitas == 0%}
+            <br>
+    <button onclick="location.href='{{ path('addexpanse') }}'" type="button" class="btn btn-primary" disabled>Pridėti pirkinį/išlaidą</button>
+            <p><a style="color: red;">Išnaudotas limitas.</a></p>
+            <br>
+            {% elseif app.user.busena == 'Užblokuotas' %}
+                <button onclick="location.href='{{ path('addexpanse') }}'" type="button" class="btn btn-primary" disabled>Pridėti pirkinį/išlaidą</button>
+                <p><a style="color: red;">Jūsų limitas užblokuotas, priežastis : {{ app.user.reason }}.</a></p>
+            <br>
+        {% endif %}
+        <br>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <tr>
+                    <th>Pavadinimas</th>
+                    <th>Suma (eur)</th>
+                    <th>Kategorija</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set sum = 0 %}
+                    {% for p in expanses %}
+                            <tr>
+                                <td>{{ p.pavadinimas }}</td>
+                                <td>{{ p.suma }}</td>
+                                <td>{{ p.tipas }}</td>
+                                {% set sum = sum + p.suma %}
+                            </tr>
+                    {% endfor %}
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Viso</td>
+                    <td>{{ sum }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

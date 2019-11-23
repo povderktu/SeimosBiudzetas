@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if app.user %}
+        {% if app.user.role == 3 %}
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Išlaidų tipai</h1>
+            </div>
+            <button onclick="location.href='{{ path('addExpanseType') }}'" type="button" class="btn btn-primary">Pridėti išlaidos tipą</button>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <tr>
+                        <th>#</th>
+                        <th>Pavadinimas</th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                    {% for p in expanseTypes %}
+                        <tr>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.tipas }}</td>
+                        <td><button onclick="location.href='{{ 'deleteExpanseType/' ~ p.id }}'" type="button" class="btn btn-primary">Pašalinti tipą</button></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

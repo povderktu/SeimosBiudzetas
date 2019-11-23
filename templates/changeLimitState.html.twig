@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><br>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Vartotojai</h1>
+    </div>
+    <br>
+    <br>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <tr>
+                <th>#</th>
+                <th>Vardas</th>
+                <th>Limitas (eur)</th>
+                <th>Limito būsena</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in members %}
+                {% if p.role != 2 and p.role != 3 %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.username }}</td>
+                <td>{{ p.limitas }}</td>
+                <td>{{ p.busena }}</td>
+
+                {% if p.busena == 'Nepatvirtintas' %}
+                    <td><button onclick="location.href='{{ 'confirmLimit/' ~ p.id }}'" type="button" class="btn btn-primary">Patvirtinti/atblokuoti limitą</button></td>
+                    <td><button onclick="location.href='{{ 'blockLimit/' ~ p.id }}'" type="button" class="btn btn-primary">Blokuoti limitą</button></td>
+                {% elseif p.busena == 'Patvirtintas' %}
+                    <td><button onclick="location.href='{{ 'confirmLimit/' ~ p.id }}'" type="button" class="btn btn-primary" disabled>Patvirtinti/atblokuoti limitą</button></td>
+                    <td><button onclick="location.href='{{ 'blockLimit/' ~ p.id }}'" type="button" class="btn btn-primary">Blokuoti limitą</button></td>
+                    {% elseif p.busena == 'Užblokuotas' %}
+                        <td><button onclick="location.href='{{ 'confirmLimit/' ~ p.id }}'" type="button" class="btn btn-primary">Patvirtinti/atblokuoti limitą</button></td>
+                        <td><button onclick="location.href='{{ 'blockLimit/' ~ p.id }}'" type="button" class="btn btn-primary" disabled>Blokuoti limitą</button></td>
+                        {% endif %}
+            </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
