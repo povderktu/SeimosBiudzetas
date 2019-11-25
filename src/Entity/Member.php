@@ -34,6 +34,11 @@ class Member implements UserInterface
     private $dabartinisLimitas;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $vardas;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $email;
@@ -93,18 +98,23 @@ class Member implements UserInterface
     /**
      * @return mixed
      */
-    public function getUsername()
+    public function getVardas()
     {
-        return null;
+        return $this->vardas;
     }
 
     /**
      * @param mixed $username
      */
-    //public function setUsername($username): void
-   // {
-    //    $this->username = $username;
-    //}
+    public function setVardas($vardas): void
+    {
+        $this->vardas = $vardas ;
+    }
+
+    public function getUsername()
+    {
+        return null;
+    }
 
     /**
      * @return mixed

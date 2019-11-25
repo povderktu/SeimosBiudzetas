@@ -56,8 +56,6 @@ class MemberController extends AbstractController
 
                     $form->handleRequest($request);
                     if ($form->isSubmitted() && $form->isValid()) {
-                        $password = $passwordEncoder->encodePassword($member, $member->getPassword());
-                        $member->setPassword($password);
                         $member->setLimitas(0);
                         $member->setDabartinisLimitas(0);
                         $member->setBusena('Nepatvirtintas');

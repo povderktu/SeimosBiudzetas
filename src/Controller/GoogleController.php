@@ -35,7 +35,7 @@ class GoogleController extends AbstractController
     public function connectCheckAction(Request $request)
     {
         if (!$this->getUser()) {
-            return new JsonResponse(array('status' => false, 'message' => "User not found!"));
+            return new JsonResponse(array('status' => false, 'message' => "Toks vartotojas neegzistuoja."));
         } else {
             return $this->redirectToRoute('main');
         }

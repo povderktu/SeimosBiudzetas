@@ -122,6 +122,9 @@
     "lcobucci/jwt": {
         "version": "3.3.1"
     },
+    "league/flysystem": {
+        "version": "1.0.57"
+    },
     "league/oauth2-client": {
         "version": "2.4.1"
     },
@@ -151,6 +154,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "paulthebaud/phpunit-generator": {
+        "version": "2.1.5"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -185,6 +191,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "respect/validation": {
+        "version": "1.1.31"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -193,6 +202,9 @@
             "version": "5.2",
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
+    },
+    "slim/php-view": {
+        "version": "2.2.1"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"

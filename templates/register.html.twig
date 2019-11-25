@@ -4,17 +4,15 @@
         {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
         {{ form_start(form) }}
-        {% if not form.vars.valid %}
-            {{ form_errors(form.username) }}
-            {{ form_errors(form.password.first) }}
-        {% endif %}
+        {#{% if not form.vars.valid %}
+           {{ form_errors(form.username) }}
+           {{ form_errors(form.password.first) }}
+        {% endif %}#}
 
         <br>
         <br>
 
-        Prisijungimo vardas {{ form_widget(form.username) }}
-        Slaptažodis {{ form_widget(form.password.first) }}
-        Pakartotinis slaptažodis {{ form_widget(form.password.second) }}
+        Vardas {{ form_widget(form.vardas) }}
         Rolė (1 - šeimos narys, 2 - kontrolierius, 3 - šeimos galva) {{ form_widget(form.role) }}
         <br>
         <button type="submit" class="btn btn-primary btn-raised"> Pridėti naują vartotoją </button>
